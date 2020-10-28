@@ -1,0 +1,20 @@
+{
+  "name": "nextjs-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thais Martins <contato@thaismartins.co>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.11.1"
+  },
+  "dependencies": {
+    "next": "^10.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
