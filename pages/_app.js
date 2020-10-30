@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }) {
       if (isPushNotificationSupported) {
         await registerServiceWorker()
         const existingSubscription = await getCurrentSubscription()
-        console.log('existingSubscription', existingSubscription)
         if (!existingSubscription) await requestSubscription()
       }
     }
