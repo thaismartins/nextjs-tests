@@ -2,7 +2,29 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { ContentMain } from '../styles/global'
 
+import {
+  isSupported,
+  registerServiceWorker,
+  getCurrentSubscription,
+  requestSubscription,
+} from '../services/pushNotification.js'
+
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    async function checkSubscription() {
+      const isPushNotificationSupported = await isSupported()
+
+      if (isPushNotificationSupported) {
+        await registerServiceWorker()
+        const existingSubscription = await getCurrentSubscription()
+        console.log('existingSubscription', existingSubscription)
+        if (!existingSubscription) await requestSubscription()
+      }
+    }
+
+    checkSubscription()
+  }, [])
+
   return (
     <>
       <Header />
