@@ -1,4 +1,3 @@
-import { Head } from 'next/head'
 import Link from 'next/link'
 import { ContentCenter, Title, Subtitle } from '../styles/global'
 import { getCategories, getPosts } from '../services'
@@ -6,9 +5,6 @@ import { getCategories, getPosts } from '../services'
 const Home = ({ posts, categories }) => {
   return (
     <>
-      {/* <Head>
-        <title>Home | Exponencial</title>
-      </Head> */}
       <ContentCenter>
         <Title>Home</Title>
         <Subtitle>Posts</Subtitle>
@@ -45,13 +41,6 @@ export async function getStaticProps() {
       posts,
       categories,
     },
-  }
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: '/' } }],
-    fallback: true,
   }
 }
 

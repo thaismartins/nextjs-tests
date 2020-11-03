@@ -1,4 +1,3 @@
-import { Head } from 'next/head'
 import {
   getPostBySlug,
   getCategoryBySlug,
@@ -29,9 +28,7 @@ export async function getStaticProps({ params }) {
     params?.slug.hasOwnProperty('isArray') && params?.slug.isArray()
       ? params?.slug.pop()
       : params?.slug
-  console.log('slug', slug)
   const post = await getPostBySlug(slug)
-  console.log('post', post)
   const category = await getCategoryBySlug(slug)
 
   return {
@@ -39,7 +36,7 @@ export async function getStaticProps({ params }) {
       post,
       category,
     },
-    invalidate: 2000,
+    revalidate: 2000,
   }
 }
 
