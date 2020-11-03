@@ -1,24 +1,34 @@
+/* eslint-ignore */
 function receivePushNotification(event) {
-  const { image, tag, url, title, text } = event.data.json()
+  if (!event.data) return;
 
-  const options = {
-    data: url,
-    body: text,
-    icon: image,
-    vibrate: [200, 100, 200],
-    tag: tag,
-    image: image,
-    badge: 'https://creditas.com/exponencial/favicon.ico',
-    actions: [],
+  let data = {}
+  try {
+    data = event.data.json()
+  } catch (e) {
+    data.title = event.data.text()
   }
 
-  event.waitUntil(self.registration.showNotification(title, options))
+  const image = 'https://creditas.com/exponencial/favicon.ico'
+
+  const options = {
+    data: data.url || 'https://creditas.com',
+    body: data.text,
+    icon: data.image || image,
+    vibrate: [200, 100, 200],
+    tag: data.tag || 'Exponencial',
+    image: data.image || image, 
+    badge: image,
+    actions: []
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
 }
 
 function openPushNotification(event) {
-  event.notification.close()
-  event.waitUntil(clients.openWindow(event.notification.data))
+  event.notification.close();
+  event.waitUntil(clients.openWindow(event.notification.data));
 }
 
-self.addEventListener('push', receivePushNotification)
-self.addEventListener('notificationclick', openPushNotification)
+self.addEventListener('push', receivePushNotification);
+self.addEventListener('notificationclick', openPushNotification);

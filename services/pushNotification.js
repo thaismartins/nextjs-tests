@@ -40,7 +40,14 @@ const getCurrentSubscription = async () => {
 }
 
 const saveSubscription = (subscription) => {
-  return fetch.post(`${URL}/push-notification/subscription`, subscription)
+  return fetch(`${URL}/push-notification/subscription`, {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(subscription),
+  })
 }
 
 const urlBase64ToUint8Array = (base64String) => {
