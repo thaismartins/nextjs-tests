@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.12.5",
     "babel-plugin-styled-components": "^1.11.1"
   },
   "dependencies": {

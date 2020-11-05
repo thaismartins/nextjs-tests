@@ -3,6 +3,10 @@
     "development": {
       "plugins": [
         [
+          "@babel/plugin-transform-react-jsx",
+          { "runtime": "automatic" }
+        ],
+        [
           "babel-plugin-styled-components",
           { "ssr": true, "displayName": true, "preprocess": false }
         ]
